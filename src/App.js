@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Article from './components.js/Article';
 import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SearchIcon from '@material-ui/icons/Search';
 import {
   Paper,
@@ -86,9 +87,8 @@ function App() {
       height: 200,
     },
     center: {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      width: '30%',
+      display: 'flex',
+      justifyContent: 'center',
     },
     notFoundImg: {
       marginLeft: 'auto',
@@ -104,11 +104,11 @@ function App() {
   }));
 
   const classes = useStyles();
-
+ 
   let results;
   if (article.length === 0) {
     results = 
-    <div>
+    <Container maxWidth="sm">
       <img 
       className={classes.notFoundImg} 
       src='https://d3nuqriibqh3vw.cloudfront.net/media-vimeo/70533052.jpg'></img>
@@ -121,7 +121,7 @@ function App() {
         variant="outlined"
       />
     </div>
-  </div>
+  </Container>
   } else {
     results = article.map(function (el) {
       // TITLE
